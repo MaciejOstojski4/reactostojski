@@ -6,15 +6,18 @@ class PostList extends React.Component {
 
     render() {
         return(
-            <ul>
-                {this.props.posts.map((post) => {
-                    return(
-                        <li>
-                            <Post key={post.title} title={post.title} content={post.content} />
-                        </li>
-                    )
-                })}
-            </ul>
+            <div>
+                <h2>Twoje posty</h2>
+                <ul class="list-group">
+                    {this.props.posts.map((post) => {
+                        return(
+                            <li className="list-group-item">
+                                <Post key={post.id} post={post} onDelete={this.props.onDelete}/>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         )
     }
 }

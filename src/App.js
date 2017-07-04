@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ListElement from './components/ListElement';
+import PostList from './components/PostList';
+import PostForm from './components/PostForm';
 
 class App extends Component {
 
@@ -9,55 +9,38 @@ class App extends Component {
         super(props);
 
         this.state = {
-            counter: 0,
-            date: []
-        };
-        this.increase = this.increase.bind(this);
-        this.saveClickDate = this.saveClickDate.bind(this);
+            posts: []
+        }
     }
 
-    increase() {
-        this.setState({
-            counter: this.state.counter + 1
-        })
-    }
+    addPost = post => {
+          this.setState({
+              posts:[
+                  ...this.state.posts,
+                  {id: Math.random(), title: post.title, content: post.content, author: post.author }
+              ]
+          })
+    };
 
-    saveClickDate() {
+    deletePost = id => {
         this.setState({
-            date: [...this.state.date, new Date().toISOString()]
-        })
-    }
+            posts: this.state.posts.filter(val => val.id != id)
+    })};
 
     render() {
         return (
-            <div>
-                <button onClick={this.saveClickDate}>Click me!</button>
-                <ListElement element={5}/>
-                <ListElement />
-                <ul>
-                    {this.state.date.map((val) => {
-                        return <ListElement key={val} element={val} />
-                    })}
-                </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <PostForm onSubmit={this.addPost}/>
+                    </div>
+                    <div className="col-md-6">
+                        <PostList posts={this.state.posts} onDelete={this.deletePost}/>
+                    </div>
+                </div>
             </div>
         )
     }
-
-
-
-  // render() {
-  //   return (
-  //     <div className="App">
-  //       <div className="App-header">
-  //         <img src={logo} className="App-logo" alt="logo" />
-  //         <h2>Welcome to React</h2>
-  //       </div>
-  //       <p className="App-intro">
-  //         To get started, edit <code>src/App.js</code> and save to reload.
-  //       </p>
-  //     </div>
-  //   );
-  // }
 }
 
 export default App;
