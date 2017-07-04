@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ListElement extends React.Component {
 
@@ -16,5 +17,13 @@ class ListElement extends React.Component {
         )
     }
 }
+
+ListElement.propTypes = {
+    element: PropTypes.string.isRequired
+};
+
+ListElement.defaultProps = {
+    element: "default value"
+};
 
 export default ListElement;

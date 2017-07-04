@@ -23,10 +23,8 @@ class App extends Component {
     }
 
     saveClickDate() {
-        var now = new Date();
-        this.state.date.push(now.toISOString());
         this.setState({
-            date: this.state.date
+            date: [...this.state.date, new Date().toISOString()]
         })
     }
 
@@ -34,9 +32,11 @@ class App extends Component {
         return (
             <div>
                 <button onClick={this.saveClickDate}>Click me!</button>
+                <ListElement element={5}/>
+                <ListElement />
                 <ul>
                     {this.state.date.map((val) => {
-                        return <ListElement element={val} />
+                        return <ListElement key={val} element={val} />
                     })}
                 </ul>
             </div>
