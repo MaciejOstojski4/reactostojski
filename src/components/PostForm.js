@@ -1,7 +1,9 @@
 /**
  * Created by react on 04.07.17.
  */
-import React from 'react';
+import React from "react";
+
+import Button from "./generic/button";
 
 class PostForm extends React.Component {
 
@@ -61,7 +63,7 @@ class PostForm extends React.Component {
                         <input placeholder="Author" type="text" value={this.state.post.author} onChange={this.refreshAuthorState} />
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-default" onClick={this.onSubmit} type="submit">Potwierdź</button>
+                        <Button className="btn btn-default" onClick={this.onSubmit} label="Submit" />
                     </div>
                 </form>
             </div>

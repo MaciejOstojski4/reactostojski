@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
-import PostList from './components/PostList';
-import PostForm from './components/PostForm';
+import React, {Component} from "react";
+import "./App.css";
+import PostList from "./components/PostList";
+import PostForm from "./components/PostForm";
+import SearchPost from "./components/SearchPost";
 
 class App extends Component {
 
@@ -9,7 +10,12 @@ class App extends Component {
         super(props);
 
         this.state = {
-            posts: []
+            posts: [{id: 1, title: "Pierwszy tytuł", content: "Pierwszy content", author: "ja"},
+                {id: 2, title: "Drugi tytuł", content: "Drugi content", author: "ja"},
+                {id: 3, title: "Trzeci tytuł", content: "Trzeci content", author: "ja"},
+                {id: 4, title: "Czwarty tytuł", content: "Czwarty content", author: "ja"}],
+
+            searchedValue: ""
         }
     }
 
@@ -24,18 +30,29 @@ class App extends Component {
 
     deletePost = id => {
         this.setState({
-            posts: this.state.posts.filter(val => val.id != id)
+            posts: this.state.posts.filter(val => val.id !== id)
     })};
 
+    search = title => {
+        this.setState({
+            searchedValue: title
+        })
+    };
+
     render() {
+        console.log(this.state.searchedValue);
+        let postsToDisplay = this.state.posts.filter(val => val.title.includes(this.state.searchedValue));
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6">
+                    <SearchPost onSearch={this.search}/>
+                </div>
+                <div className="row">
+                    <div className="col-md-4">
                         <PostForm onSubmit={this.addPost}/>
                     </div>
-                    <div className="col-md-6">
-                        <PostList posts={this.state.posts} onDelete={this.deletePost}/>
+                    <div className="col-md-8">
+                        <PostList posts={postsToDisplay} onDelete={this.deletePost}/>
                     </div>
                 </div>
             </div>

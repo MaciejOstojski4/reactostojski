@@ -2,7 +2,9 @@
  * Created by react on 04.07.17.
  */
 
-import React from 'react';
+import React from "react";
+
+import Button from "./generic/button";
 
 class Post extends React.Component {
 
@@ -12,17 +14,20 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style = {{
+                    display: "flex",
+                    justifyContent: "space-between"
+                }}>
                 <h2>
                     Title: {this.props.post.title}
                 </h2>
-                <h4>
+                <p>
                     Author: {this.props.post.author}
-                </h4>
+                </p>
                 <p>
                     Content: {this.props.post.content}
                 </p>
-                <button onClick={this.delete}>Delete</button>
+                <Button label="Delete" onClick={this.delete} />
             </div>
         )
     }
