@@ -3,6 +3,7 @@ import "./App.css";
 import PostList from "./components/PostList";
 import PostForm from "./components/PostForm";
 import SearchPost from "./components/SearchPost";
+import BlogHeader from "./components/BlogHeader";
 
 class App extends Component {
 
@@ -35,25 +36,16 @@ class App extends Component {
 
     search = title => {
         this.setState({
-            searchedValue: title
+            searchedValue: title.toLowerCase()
         })
     };
 
     render() {
         console.log(this.state.searchedValue);
-        let postsToDisplay = this.state.posts.filter(val => val.title.includes(this.state.searchedValue));
+        let postsToDisplay = this.state.posts.filter(val => val.title.toLowerCase().includes(this.state.searchedValue));
         return (
             <div className="container">
-                <div className="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div className="navbar-header">
-                            <span className="navbar-brand">Blog</span>
-                        </div>
-                        <div className="navbar-form navbar-left">
-                            <SearchPost onSearch={this.search}/>
-                        </div>
-                    </div>
-                </div>
+                <BlogHeader onSearch={this.search} />
                 <div className="row">
                     <div className="col-md-4">
                         <PostForm onSubmit={this.addPost}/>
