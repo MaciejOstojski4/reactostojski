@@ -14,20 +14,21 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div style = {{
-                    display: "flex",
-                    justifyContent: "space-between"
-                }}>
-                <h2>
-                    Title: {this.props.post.title}
-                </h2>
-                <p>
+            <div className="container">
+                <div className="row">
+                    <h2>Title: {this.props.post.title}</h2>
+                </div>
+                <div className="row">
                     Author: {this.props.post.author}
-                </p>
-                <p>
+                </div>
+                <div className="row" style = {{
+                    "width": "65%"
+                }}>
                     Content: {this.props.post.content}
-                </p>
-                <Button label="Delete" onClick={this.delete} />
+                </div>
+                <div className="row">
+                    <Button label="Delete" class={"btn btn-danger"} onClick={this.delete} />
+                </div>
             </div>
         )
     }

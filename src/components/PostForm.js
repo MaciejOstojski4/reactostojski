@@ -15,22 +15,24 @@ class PostForm extends React.Component {
         }
     }
 
-    refreshTitleState = (e) => {
-        this.setState({
-            post: {...this.state.post, title: e.target.value}
-        })
-    };
-
-    refreshContentState = (e) => {
-        this.setState({
-            post: {...this.state.post, content: e.target.value}
-        });
-    };
-
-    refreshAuthorState = (e) => {
-        this.setState({
-            post: {...this.state.post, author: e.target.value}
-        });
+    refreshState = (e) => {
+        switch(e.target.id) {
+            case "titleInput":
+                this.setState({
+                    post: {...this.state.post, title: e.target.value}
+                });
+                break;
+            case "contentInput":
+                this.setState({
+                    post: {...this.state.post, content: e.target.value}
+                });
+                break;
+            case "authorInput":
+                this.setState({
+                    post: {...this.state.post, author: e.target.value}
+                });
+                break;
+        }
     };
 
     onSubmit = (e) => {
@@ -52,18 +54,18 @@ class PostForm extends React.Component {
                 <form>
                     <div className="form-group">
                         <label>Title</label>
-                        <input placeholder="title" type="text" value={this.state.post.title} onChange={this.refreshTitleState} />
+                        <input className="form-control" id="titleInput" placeholder="Title" type="text" value={this.state.post.title} onChange={this.refreshState} />
                     </div>
                     <div className="form-group">
                         <label>Content</label>
-                        <input placeholder="content" type="text" value={this.state.post.content} onChange={this.refreshContentState} />
+                        <textArea className="form-control" id="contentInput" placeholder="Content" type="text" value={this.state.post.content} onChange={this.refreshState} />
                     </div>
                     <div className="form-group">
                         <label>Author</label>
-                        <input placeholder="Author" type="text" value={this.state.post.author} onChange={this.refreshAuthorState} />
+                        <input className="form-control" id="authorInput" placeholder="Author" type="text" value={this.state.post.author} onChange={this.refreshState} />
                     </div>
                     <div className="form-group">
-                        <Button className="btn btn-default" onClick={this.onSubmit} label="Submit" />
+                        <Button class="btn btn-success" onClick={this.onSubmit} label="Submit" />
                     </div>
                 </form>
             </div>

@@ -7,7 +7,7 @@ class PostList extends React.Component {
     render() {
         return(
             <div>
-                <h2>Twoje posty</h2>
+                <h2>Your posts</h2>
                 <ul className="list-group">
                     {this.props.posts.map((post) => {
                         return(

@@ -44,8 +44,15 @@ class App extends Component {
         let postsToDisplay = this.state.posts.filter(val => val.title.includes(this.state.searchedValue));
         return (
             <div className="container">
-                <div className="row">
-                    <SearchPost onSearch={this.search}/>
+                <div className="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div className="navbar-header">
+                            <span className="navbar-brand">Blog</span>
+                        </div>
+                        <div className="navbar-form navbar-left">
+                            <SearchPost onSearch={this.search}/>
+                        </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-4">
