@@ -1,5 +1,5 @@
 import React from "react";
-import BlogHeader from "./components/BlogHeader"
+import BlogHeader from "./components/post/BlogHeader"
 
 class Layout extends React.Component {
 

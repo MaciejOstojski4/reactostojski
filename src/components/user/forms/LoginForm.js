@@ -4,6 +4,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
+import axios from "axios";
 
 class LoginForm extends React.Component {
 
@@ -11,7 +12,8 @@ class LoginForm extends React.Component {
         super(props);
 
         this.state = {
-            user: {email: "", password: ""}
+            user: {email: "", password: ""},
+            errorInfo: ""
         }
     }
 
@@ -30,15 +32,27 @@ class LoginForm extends React.Component {
       }
     };
 
-    login = e =>{
+    login = e => {
         e.preventDefault();
-        this.props.dispatch({ type: "LOGIN", data: this.state.user.email });
-        this.props.router.push("posts");
+        this.setState({
+            errorInfo: ""
+        });
+        axios.post("http://192.168.10.127:3001/sign-in", {
+            email: this.state.user.email,
+            password: this.state.user.password
+        }).then(response => {
+            this.props.dispatch({ type: "LOGIN", data: this.state.user.email });
+            this.props.router.push("posts");
+        }).catch(error => {
+            this.setState({
+                errorInfo: "Bad email or password. Try again"
+            })
+        });
     };
 
     render() {
         return (
-            <div>
+            <div className="col-md-4 col-md-offset-4">
                 <form>
                     <div className="form-group">
                         <label>Email</label>
@@ -51,6 +65,7 @@ class LoginForm extends React.Component {
                     <div className="form-gorup">
                         <button onClick={this.login} type="submit">Submit</button>
                     </div>
+                    {this.state.errorInfo}
                 </form>
             </div>
         )
