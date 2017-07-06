@@ -3,7 +3,7 @@
  */
 import React from "react";
 
-import Button from "./generic/button";
+import Button from "../generic/button";
 
 class PostForm extends React.Component {
 
@@ -50,7 +50,9 @@ class PostForm extends React.Component {
     render() {
         return (
             <div>
-                <h2>Add new Post</h2>
+                <div className="text-center">
+                    <h2>Add new Post</h2>
+                </div>
                 <form>
                     <div className="form-group">
                         <label>Title</label>
@@ -58,14 +60,14 @@ class PostForm extends React.Component {
                     </div>
                     <div className="form-group">
                         <label>Content</label>
-                        <textArea className="form-control" id="contentInput" placeholder="Content" type="text" value={this.state.post.content} onChange={this.refreshState} />
+                        <textArea rows="20" className="form-control" id="contentInput" placeholder="Content" type="text" value={this.state.post.content} onChange={this.refreshState} />
                     </div>
                     <div className="form-group">
                         <label>Author</label>
                         <input className="form-control" id="authorInput" placeholder="Author" type="text" value={this.state.post.author} onChange={this.refreshState} />
                     </div>
-                    <div className="form-group">
-                        <Button class="btn btn-success" onClick={this.onSubmit} label="Submit" />
+                    <div className="form-group text-center">
+                        <Button className="btn btn-success" onClick={this.onSubmit} label="Submit" />
                     </div>
                 </form>
             </div>

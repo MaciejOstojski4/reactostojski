@@ -2,7 +2,7 @@
  * Created by react on 05.07.17.
  */
 import React from "react";
-import SearchPost from "./SearchPost";
+import {Link} from "react-router";
 
 class BlogHeader extends React.Component {
 
@@ -11,11 +11,13 @@ class BlogHeader extends React.Component {
             <div className="navbar navbar-default">
                 <div class="container-fluid">
                     <div className="navbar-header">
-                        <span className="navbar-brand">Blog</span>
+                        <Link to="/" className="navbar-brand">Blog</Link>
                     </div>
-                    <div className="navbar-form navbar-left">
-                        <SearchPost onSearch={this.props.onSearch}/>
-                    </div>
+                    <ul className="nav navbar-nav">
+                        <li><Link to="/posts">Post list</Link></li>
+                        <li><Link to="/post-details">Post details</Link></li>
+                        <li>Posts counter: {this.props.postsQuantity}</li>
+                    </ul>
                 </div>
             </div>
         )

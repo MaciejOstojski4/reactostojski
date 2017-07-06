@@ -12,7 +12,12 @@ class SearchPost extends React.Component {
 
     render() {
         return (
-            <input onChange={this.search} type="text" placeholder="Search..." />
+            <div className="col-md-4 col-md-offset-3 text-center">
+                <form>
+                    <label><h2>Search</h2></label>
+                    <input className="form-control" onChange={this.search} type="text" placeholder="Search..." />
+                </form>
+            </div>
         )
     }
 }
