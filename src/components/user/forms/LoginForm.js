@@ -5,6 +5,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import axios from "axios";
+import {LOGIN_ACTION} from "../../../actions/actions";
 
 class LoginForm extends React.Component {
 
@@ -32,7 +33,15 @@ class LoginForm extends React.Component {
       }
     };
 
-    login = e => {
+    login = email => {
+        return {
+            type: LOGIN_ACTION,
+            data: email
+        }
+    };
+
+    processLogin = e => {
+        console.log(e);
         e.preventDefault();
         this.setState({
             errorInfo: ""
@@ -41,9 +50,11 @@ class LoginForm extends React.Component {
             email: this.state.user.email,
             password: this.state.user.password
         }).then(response => {
-            this.props.dispatch({ type: "LOGIN", data: this.state.user.email });
+            console.log(response);
+            this.props.dispatch(this.login(this.state.user.email));
             this.props.router.push("posts");
         }).catch(error => {
+            console.log(error);
             this.setState({
                 errorInfo: "Bad email or password. Try again"
             })
@@ -63,7 +74,7 @@ class LoginForm extends React.Component {
                         <input id="passwordInput" onChange={this.refreshState} className="form-control" type="password" />
                     </div>
                     <div className="form-gorup">
-                        <button onClick={this.login} type="submit">Submit</button>
+                        <button onClick={this.processLogin} type="submit">Submit</button>
                     </div>
                     {this.state.errorInfo}
                 </form>
@@ -71,5 +82,7 @@ class LoginForm extends React.Component {
         )
     }
 }
+
+// const LOGIN_ACTION = "LOGIN";
 
 export default connect()(withRouter(LoginForm));

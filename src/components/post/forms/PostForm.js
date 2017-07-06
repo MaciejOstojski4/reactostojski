@@ -6,6 +6,7 @@ import React from "react";
 import Button from "../../generic/button";
 import {connect} from "react-redux";
 import { withRouter } from "react-router";
+import {ADD_POST_ACTION} from "../../../actions/actions"
 
 class PostForm extends React.Component {
 
@@ -16,6 +17,13 @@ class PostForm extends React.Component {
             post: {id: Math.random(), title: "", content: "", author: ""}
         }
     }
+
+    addPost = post => {
+        return {
+            type: ADD_POST_ACTION,
+            data: post
+        }
+    };
 
     refreshState = (e) => {
         switch(e.target.id) {
@@ -39,7 +47,8 @@ class PostForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.dispatch({type: "ADD_POST", data: this.state.post});
+        console.log(this.state.post);
+        this.props.dispatch(this.addPost(this.state.post));
         this.props.router.push("posts");
     };
 

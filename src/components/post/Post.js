@@ -8,12 +8,15 @@ import Button from "../generic/button";
 import styled from "styled-components";
 import AlertButton from "../generic/AlertButton";
 import { connect } from "react-redux";
-
+import {DELETE_POST_ACTION} from "../../actions/actions";
 
 class Post extends React.Component {
 
-    delete = () => {
-        this.props.dispatch({type: "DELETE_POST", data: this.props.post.id});
+    deletePost = () => {
+        return {
+            type: DELETE_POST_ACTION,
+            data: this.props.post.id
+        }
     };
 
     render() {
@@ -29,7 +32,7 @@ class Post extends React.Component {
                     {this.props.post.content}
                 </PostField>
                 <PostField className="row text-center">
-                    <Button label="Delete" class={"btn btn-danger"} onClick={this.delete} />
+                    <Button label="Delete" class={"btn btn-danger"} onClick={() => this.props.dispatch(this.deletePost())} />
                 </PostField>
                 <PostField className="row text-center">
                     <AlertButton label="Hello"/>

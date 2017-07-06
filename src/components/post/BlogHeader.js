@@ -4,11 +4,14 @@
 import React from "react";
 import {Link} from "react-router";
 import { connect } from "react-redux";
+import {LOGOUT_ACTION} from "../../actions/actions";
 
 class BlogHeader extends React.Component {
 
     logout = () => {
-        this.props.dispatch({type: "LOGOUT"});
+        return {
+            type: LOGOUT_ACTION
+        }
     };
 
     isLogged = userEmail => {
@@ -35,7 +38,7 @@ class BlogHeader extends React.Component {
                         <li className="navbar-text">{this.isLogged(this.props.userEmail)}</li>
                         <li className="navbar-text">Post counter: {this.props.postQuantity}</li>
                         <li><Link to="/login-form">Login <span className="glyphicon glyphicon-log-in" /></Link></li>
-                        <li><Link onClick={this.logout} to="/" >Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
+                        <li><Link onClick={() => this.props.dispatch(this.logout())} to="/" >Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
                     </ul>
                 </div>
             </div>

@@ -3,15 +3,20 @@
  */
 import React from "react";
 import { connect } from "react-redux";
+import {INCREMENT_ACTION, DECREMENT_ACTION} from "../actions/actions";
 
 class Home extends React.Component {
 
     increment = () => {
-        this.props.dispatch({type: "INCREMENT"})
+        return {
+            type: INCREMENT_ACTION
+        }
     };
 
     decrement = () => {
-        this.props.dispatch({type: "DECREMENT"})
+        return {
+            type: DECREMENT_ACTION
+        }
     };
 
     render() {
@@ -19,8 +24,8 @@ class Home extends React.Component {
             <div>
                 <h2>Home Page</h2>
                 {this.props.counter}
-                <button onClick={this.increment} >Increment</button>
-                <button onClick={this.decrement} >Decrement</button>
+                <button onClick={() => this.props.dispatch(this.increment())} >Increment</button>
+                <button onClick={() => this.props.dispatch(this.decrement())} >Decrement</button>
             </div>
         )
     }
