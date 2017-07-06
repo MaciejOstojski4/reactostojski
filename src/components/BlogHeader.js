@@ -30,7 +30,7 @@ class BlogHeader extends React.Component {
 
 const mapStateToProps = currentState => {
     return {
-        postQuantity: currentState.posts.length
+        postQuantity: currentState.postsReducer.posts.length
     }
 };
 

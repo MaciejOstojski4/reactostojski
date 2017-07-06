@@ -29,7 +29,7 @@ class Home extends React.Component {
 // Wstrzyknięcie stanu ze store do komponentu
 const mapStateToProps = currentState => {
     return {
-        counter: currentState.counter
+        counter: currentState.counterReducer
     };
 };
 
