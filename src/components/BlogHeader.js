@@ -11,6 +11,14 @@ class BlogHeader extends React.Component {
         this.props.dispatch({type: "LOGOUT"});
     };
 
+    isLogged = userEmail => {
+        if(userEmail !== "") {
+            return "Email: " + userEmail;
+        } else {
+            return "Please login";
+        }
+    };
+
     render() {
         return (
             <div className="navbar navbar-default">
@@ -24,7 +32,7 @@ class BlogHeader extends React.Component {
                         <li><Link to="/post-details">Post details</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <li className="navbar-text">{this.props.userEmail !== "" ? "Email: " + this.props.userEmail : "Please login"}</li>
+                        <li className="navbar-text">{this.isLogged(this.props.userEmail)}</li>
                         <li className="navbar-text">Post counter: {this.props.postQuantity}</li>
                         <li><Link to="/login-form">Login <span className="glyphicon glyphicon-log-in" /></Link></li>
                         <li><Link onClick={this.logout} to="/" >Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
