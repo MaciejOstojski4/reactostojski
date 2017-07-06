@@ -4,6 +4,7 @@
 import React from "react";
 
 import Button from "../../generic/button";
+import {connect} from "react-redux";
 
 class PostForm extends React.Component {
 
@@ -37,7 +38,7 @@ class PostForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onSubmit(this.state.post);
+        this.props.dispatch({type: "ADD_POST", data: this.state.post});
         this.clearForm();
     };
 
@@ -75,4 +76,4 @@ class PostForm extends React.Component {
     }
 }
 
-export default PostForm;
+export default connect()(PostForm);

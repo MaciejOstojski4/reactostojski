@@ -6,6 +6,7 @@ import React from "react";
 import PostForm from "./forms/PostForm";
 import SearchPost from "../SearchPost";
 import ParityList from "./lists/ParityList";
+import { connect } from "react-redux";
 
 class PostPage extends React.Component {
 
@@ -13,28 +14,9 @@ class PostPage extends React.Component {
         super(props);
 
         this.state = {
-            posts: [{id: 1, title: "Pierwszy tytuł", content: "Pierwszy content", author: "ja"},
-                {id: 2, title: "Drugi tytuł", content: "Drugi content", author: "ja"},
-                {id: 3, title: "Trzeci tytuł", content: "Trzeci content", author: "ja"},
-                {id: 4, title: "Czwarty tytuł", content: "Czwarty content", author: "ja"}],
-
             searchedValue: ""
         }
     }
-
-    addPost = post => {
-        this.setState({
-            posts:[
-                ...this.state.posts,
-                {id: Math.random(), title: post.title, content: post.content, author: post.author }
-            ]
-        })
-    };
-
-    deletePost = id => {
-        this.setState({
-            posts: this.state.posts.filter(val => val.id !== id)
-        })};
 
     search = title => {
         this.setState({
@@ -43,7 +25,7 @@ class PostPage extends React.Component {
     };
 
     render() {
-        let postsToDisplay = this.state.posts.filter(val => val.title.toLowerCase().includes(this.state.searchedValue));
+        let postsToDisplay = this.props.posts.filter(val => val.title.toLowerCase().includes(this.state.searchedValue));
         return (
             <div className="container">
                 <div className="row">
@@ -51,10 +33,10 @@ class PostPage extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <PostForm onSubmit={this.addPost}/>
+                        <PostForm />
                     </div>
                     <div className="col-md-8">
-                        <ParityList posts={postsToDisplay} onDelete={this.deletePost}/>
+                        <ParityList posts={postsToDisplay}/>
                     </div>
                 </div>
             </div>
@@ -62,4 +44,11 @@ class PostPage extends React.Component {
     }
 }
 
-export default PostPage;
+const mapStateToProps = currentState => {
+    return {
+        posts: currentState.posts,
+        counter: currentState.counter
+    }
+};
+
+export default connect(mapStateToProps)(PostPage);

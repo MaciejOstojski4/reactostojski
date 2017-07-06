@@ -7,12 +7,13 @@ import React from "react";
 import Button from "../generic/button";
 import styled from "styled-components";
 import AlertButton from "../generic/AlertButton";
+import { connect } from "react-redux";
 
 
 class Post extends React.Component {
 
     delete = () => {
-        this.props.onDelete(this.props.post.id);
+        this.props.dispatch({type: "DELETE_POST", data: this.props.post.id});
     };
 
     render() {
@@ -50,4 +51,4 @@ const StyledPost = styled.div`
     }
 `;
 
-export default Post;
+export default connect()(Post);
