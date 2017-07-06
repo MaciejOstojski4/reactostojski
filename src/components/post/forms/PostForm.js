@@ -3,7 +3,7 @@
  */
 import React from "react";
 
-import Button from "../generic/button";
+import Button from "../../generic/button";
 
 class PostForm extends React.Component {
 

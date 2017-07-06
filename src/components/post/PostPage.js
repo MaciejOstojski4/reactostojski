@@ -3,9 +3,9 @@
  */
 import React from "react";
 
-import PostForm from "./PostForm";
+import PostForm from "./forms/PostForm";
 import SearchPost from "../SearchPost";
-import ParityList from "./ParityList";
+import ParityList from "./lists/ParityList";
 
 class PostPage extends React.Component {
 
