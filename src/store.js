@@ -8,7 +8,7 @@ const initialState=  {
         {id: 2, title: "Drugi tytuł", content: "Drugi content", author: "ja"},
         {id: 3, title: "Trzeci tytuł", content: "Trzeci content", author: "ja"},
         {id: 4, title: "Czwarty tytuł", content: "Czwarty content", author: "ja"}],
-    counter: 0
+    counter: 0,
 };
 
 const reducer = (currentState = initialState, action) => {

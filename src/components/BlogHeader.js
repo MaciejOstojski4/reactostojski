@@ -3,6 +3,7 @@
  */
 import React from "react";
 import {Link} from "react-router";
+import { connect } from "react-redux";
 
 class BlogHeader extends React.Component {
 
@@ -17,10 +18,19 @@ class BlogHeader extends React.Component {
                         <li><Link to="/posts">Post list</Link></li>
                         <li><Link to="/post-details">Post details</Link></li>
                     </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li className="navbar-text">Post counter: {this.props.postQuantity}</li>
+                    </ul>
                 </div>
             </div>
         )
     }
 }
 
-export default BlogHeader;
+const mapStateToProps = currentState => {
+    return {
+        postQuantity: currentState.posts.length
+    }
+};
+
+export default connect(mapStateToProps)(BlogHeader);
