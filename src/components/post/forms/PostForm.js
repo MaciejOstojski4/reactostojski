@@ -5,6 +5,7 @@ import React from "react";
 
 import Button from "../../generic/button";
 import {connect} from "react-redux";
+import { withRouter } from "react-router";
 
 class PostForm extends React.Component {
 
@@ -39,13 +40,7 @@ class PostForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.dispatch({type: "ADD_POST", data: this.state.post});
-        this.clearForm();
-    };
-
-    clearForm = () => {
-        this.setState({
-            post: {title: "", content: "", author: ""}
-        })
+        this.props.router.push("posts");
     };
 
     render() {
@@ -76,4 +71,4 @@ class PostForm extends React.Component {
     }
 }
 
-export default connect()(PostForm);
+export default connect()(withRouter(PostForm));
