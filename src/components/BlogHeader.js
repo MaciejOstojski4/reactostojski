@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 
 class BlogHeader extends React.Component {
 
+    logout = () => {
+        this.props.dispatch({type: "LOGOUT"});
+    };
+
     render() {
         return (
             <div className="navbar navbar-default">
@@ -20,7 +24,10 @@ class BlogHeader extends React.Component {
                         <li><Link to="/post-details">Post details</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
+                        <li className="navbar-text">{this.props.userEmail !== "" ? "Email: " + this.props.userEmail : "Please login"}</li>
                         <li className="navbar-text">Post counter: {this.props.postQuantity}</li>
+                        <li><Link to="/login-form">Login <span className="glyphicon glyphicon-log-in" /></Link></li>
+                        <li><Link onClick={this.logout} to="/" >Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
                     </ul>
                 </div>
             </div>
@@ -30,7 +37,8 @@ class BlogHeader extends React.Component {
 
 const mapStateToProps = currentState => {
     return {
-        postQuantity: currentState.postsReducer.posts.length
+        postQuantity: currentState.postsReducer.posts.length,
+        userEmail: currentState.sessionReducer.userEmail
     }
 };
 

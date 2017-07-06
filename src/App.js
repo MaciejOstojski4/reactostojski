@@ -6,6 +6,7 @@ import PostPage from "./components/post/PostPage";
 import PostForm from "./components/post/forms/PostForm";
 import PostDetail from "./components/post/PostDetail";
 import Layout from "./Layout";
+import LoginForm from "./components/user/forms/LoginForm";
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
                         <Route path="posts" component={PostPage} />
                         <Route path="post-form" component={PostForm} />
                         <Route path="post-details" component={PostDetail} />
+                        <Route path="login-form" component={LoginForm} />
                     </Route>
                 </Router>
             </div>

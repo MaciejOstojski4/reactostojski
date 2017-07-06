@@ -3,11 +3,26 @@
  */
 import {createStore, combineReducers} from "redux";
 
-const initialState=  {
+const initialState = {
     posts: [{id: 1, title: "Pierwszy tytuł", content: "Pierwszy content", author: "ja"},
         {id: 2, title: "Drugi tytuł", content: "Drugi content", author: "ja"},
         {id: 3, title: "Trzeci tytuł", content: "Trzeci content", author: "ja"},
         {id: 4, title: "Czwarty tytuł", content: "Czwarty content", author: "ja"}],
+};
+
+const initialSession = {
+    userEmail: ""
+};
+
+const sessionReducer = (currentState = initialSession, action) => {
+    switch(action.type) {
+        case "LOGIN":
+            return { userEmail: action.data };
+        case "LOGOUT":
+            return { userEmail: "" };
+        default:
+            return currentState;
+    }
 };
 
 const counterReducer = (currentState = 0, action) => {
@@ -34,7 +49,8 @@ const postsReducer = (currentState = initialState, action) => {
 
 const rootReducer = combineReducers({
     postsReducer: postsReducer,
-    counterReducer: counterReducer
+    counterReducer: counterReducer,
+    sessionReducer: sessionReducer
 });
 
 const store = createStore(rootReducer);
