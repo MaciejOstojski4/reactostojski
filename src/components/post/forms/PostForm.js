@@ -12,7 +12,7 @@ class PostForm extends React.Component {
         super(props);
 
         this.state = {
-            post: {title: "", content: "", author: ""}
+            post: {id: Math.random(), title: "", content: "", author: ""}
         }
     }
 

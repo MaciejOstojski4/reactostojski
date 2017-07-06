@@ -32,10 +32,7 @@ class PostPage extends React.Component {
                     <SearchPost onSearch={this.search}/>
                 </div>
                 <div className="row">
-                    <div className="col-md-4">
-                        <PostForm />
-                    </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-md-offset-1">
                         <ParityList posts={postsToDisplay}/>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import "./App.css";
 import {Router, Route, IndexRoute, hashHistory} from "react-router";
 import Home from "./components/Home";
 import PostPage from "./components/post/PostPage";
+import PostForm from "./components/post/forms/PostForm";
 import PostDetail from "./components/post/PostDetail";
 import Layout from "./Layout";
 
@@ -15,6 +16,7 @@ class App extends Component {
                     <Route path="/" component={Layout}>
                         <IndexRoute component={Home} />
                         <Route path="posts" component={PostPage} />
+                        <Route path="post-form" component={PostForm} />
                         <Route path="post-details" component={PostDetail} />
                     </Route>
                 </Router>

@@ -16,6 +16,7 @@ class BlogHeader extends React.Component {
                     </div>
                     <ul className="nav navbar-nav">
                         <li><Link to="/posts">Post list</Link></li>
+                        <li><Link to="/post-form">Post form</Link></li>
                         <li><Link to="/post-details">Post details</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
