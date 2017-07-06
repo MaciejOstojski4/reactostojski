@@ -16,7 +16,6 @@ class BlogHeader extends React.Component {
                     <ul className="nav navbar-nav">
                         <li><Link to="/posts">Post list</Link></li>
                         <li><Link to="/post-details">Post details</Link></li>
-                        <li>Posts counter: {this.props.postsQuantity}</li>
                     </ul>
                 </div>
             </div>

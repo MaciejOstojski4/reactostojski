@@ -43,8 +43,6 @@ class PostPage extends React.Component {
     };
 
     render() {
-        // console.log(this.props.callbackFromLayout);
-        this.props.callbackFromLayout(this.state.posts.length);
         let postsToDisplay = this.state.posts.filter(val => val.title.toLowerCase().includes(this.state.searchedValue));
         return (
             <div className="container">
