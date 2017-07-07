@@ -3,9 +3,9 @@
  */
 import {createStore, combineReducers} from "redux";
 
-import {counterReducer} from "./reducers/counter";
-import {postsReducer} from "./reducers/posts";
-import {sessionReducer} from "./reducers/session";
+import {counterReducer} from "./counter";
+import {postsReducer} from "./post/reducer/posts";
+import {sessionReducer} from "./user/reducer/session";
 
 const rootReducer = combineReducers({
     postsReducer: postsReducer,

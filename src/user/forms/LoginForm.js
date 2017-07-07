@@ -5,7 +5,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import axios from "axios";
-import {LOGIN_ACTION} from "../../../actions/actions";
+import {loginAction} from "../../actions/actions";
 
 class LoginForm extends React.Component {
 
@@ -33,13 +33,6 @@ class LoginForm extends React.Component {
       }
     };
 
-    login = email => {
-        return {
-            type: LOGIN_ACTION,
-            data: email
-        }
-    };
-
     processLogin = e => {
         console.log(e);
         e.preventDefault();
@@ -51,7 +44,7 @@ class LoginForm extends React.Component {
             password: this.state.user.password
         }).then(response => {
             console.log(response);
-            this.props.dispatch(this.login(this.state.user.email));
+            this.props.dispatch(loginAction(this.state.user.email));
             this.props.router.push("posts");
         }).catch(error => {
             console.log(error);

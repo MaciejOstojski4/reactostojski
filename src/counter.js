@@ -2,7 +2,7 @@
  * Created by react on 06.07.17.
  */
 
-import {INCREMENT_ACTION, DECREMENT_ACTION} from "../actions/actions";
+import {INCREMENT_ACTION, DECREMENT_ACTION} from "./actions/actions";
 // import {DECREMENT_ACTION} from "../actions/actions"
 
 const counter = (currentState = 0, action) => {

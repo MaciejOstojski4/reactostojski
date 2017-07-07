@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import "./App.css";
 import {Router, Route, IndexRoute, hashHistory} from "react-router";
-import Home from "./components/Home";
-import PostPage from "./components/post/PostPage";
-import PostForm from "./components/post/forms/PostForm";
-import PostDetail from "./components/post/PostDetail";
+import Home from "./Home";
+import PostPage from "./post/PostPage";
+import PostForm from "./post/forms/PostForm";
+import PostDetail from "./post/PostDetail";
 import Layout from "./Layout";
-import LoginForm from "./components/user/forms/LoginForm";
+import LoginForm from "./user/forms/LoginForm";
 
 class App extends Component {
 
