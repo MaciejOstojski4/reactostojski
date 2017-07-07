@@ -33,8 +33,9 @@ class BlogHeader extends React.Component {
             <li className="navbar-text">Post counter:
               <span className="badge">{this.props.postQuantity}</span></li>
             <li><Link to="/login-form">Login <span className="glyphicon glyphicon-log-in" /></Link></li>
-            <li><Link onClick={() => this.props.dispatch(logoutAction())} to="/" >Logout
-              <span className="glyphicon glyphicon-log-out" /></Link></li>
+            <li><Link onClick={() => this.props.dispatch(logoutAction())} to="/" >
+              Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
+            <li><Link to="/register-form">Register <span className="glyphicon glyphicon-user" /></Link></li>
           </ul>
         </div>
       </div>

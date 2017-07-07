@@ -13,7 +13,7 @@ class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      user: {email: "", password: ""},
+      formObject: {email: "", password: ""},
       errorInfo: ""
     }
   }
@@ -22,35 +22,39 @@ class LoginForm extends React.Component {
     switch(e.target.id) {
       case "emailInput":
         this.setState({
-          user: {...this.state.user, email: e.target.value}
+          formObject: {...this.state.formObject, email: e.target.value}
         });
         break;
       case "passwordInput":
         this.setState({
-          user: {...this.state.user, password: e.target.value}
+          formObject: {...this.state.formObject, password: e.target.value}
         });
         break;
     }
   };
 
+  createObjectToSend = () => {
+    return {
+      user: {
+        email: this.state.formObject.email,
+        password: this.state.formObject.password
+      }
+    }
+  };
+
   processLogin = e => {
-    console.log(e);
     e.preventDefault();
     this.setState({
       errorInfo: ""
     });
-    axios.post("http://192.168.10.127:3001/sign-in", {
-      email: this.state.user.email,
-      password: this.state.user.password
-    }).then(response => {
-      console.log(response);
-      this.props.dispatch(loginAction(this.state.user.email));
-      this.props.router.push("posts");
+    axios.post(LOGIN_URL, this.createObjectToSend())
+      .then(response => {
+        this.props.dispatch(loginAction(this.state.formObject.email));
+        this.props.router.push("posts");
     }).catch(error => {
-      console.log(error);
-      this.setState({
-        errorInfo: "Bad email or password. Try again"
-      })
+        this.setState({
+          errorInfo: "Bad email or password. Try again"
+        })
     });
   };
 
@@ -76,6 +80,6 @@ class LoginForm extends React.Component {
   }
 }
 
-// const LOGIN_ACTION = "LOGIN";
+const LOGIN_URL = "https://praktyki-react.herokuapp.com/api/v1/sessions";
 
 export default connect()(withRouter(LoginForm));

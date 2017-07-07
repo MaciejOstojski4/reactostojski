@@ -7,6 +7,7 @@ import PostForm from "./post/forms/PostForm";
 import PostDetail from "./post/PostDetail";
 import Layout from "./Layout";
 import LoginForm from "./user/forms/LoginForm";
+import RegisterForm from "./user/forms/RegisterForm";
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="post-form" component={PostForm} />
             <Route path="post-details" component={PostDetail} />
             <Route path="login-form" component={LoginForm} />
+            <Route path="register-form" component={RegisterForm} />
           </Route>
         </Router>
       </div>
