@@ -4,21 +4,26 @@
 import React from "react";
 
 class SearchPost extends React.Component {
-
-  search = (e) => {
-
-    this.props.onSearch(e.target.value)
+  search = e => {
+    this.props.onSearch(e.target.value);
   };
 
   render() {
     return (
       <div className="text-center">
         <form>
-          <label><h2>Search</h2></label>
-          <input className="form-control" onChange={this.search} type="text" placeholder="Search..." />
+          <label>
+            <h2>Search</h2>
+          </label>
+          <input
+            className="form-control"
+            onChange={this.search}
+            type="text"
+            placeholder="Search..."
+          />
         </form>
       </div>
-    )
+    );
   }
 }
 

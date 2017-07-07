@@ -5,20 +5,17 @@ import React from "react";
 import Button from "./button";
 
 class AlertButton extends React.Component {
-
   alert = () => {
     alert("Hello!");
   };
 
   render() {
-    return (
-      <Button {...this.props} onClick={this.alert}  />
-    )
+    return <Button {...this.props} onClick={this.alert} />;
   }
 }
 
 AlertButton.defaultProps = {
-  className: "btn btn-default"
+  className: "btn btn-default",
 };
 
-export default AlertButton
+export default AlertButton;

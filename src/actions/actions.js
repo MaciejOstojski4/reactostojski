@@ -10,49 +10,51 @@ export const ADD_POST_ACTION = "ADD_POST";
 export const DELETE_POST_ACTION = "DELETE_POST";
 export const CHANGE_POST_TO_DISPLAY_ACTION = "CHANGE_POST_TO_DISPLAY";
 
-
 export const addPostAction = post => {
   return {
     type: ADD_POST_ACTION,
-    data: post
-  }
+    data: post,
+  };
 };
 
 export const deletePostAction = id => {
   return {
     type: DELETE_POST_ACTION,
-    data: id
-  }
+    data: id,
+  };
 };
 
-export const loginAction = email => {
+export const loginAction = (email, token) => {
   return {
     type: LOGIN_ACTION,
-    data: email
-  }
+    data: {
+      email: email,
+      token: token,
+    },
+  };
 };
 
 export const logoutAction = () => {
   return {
-    type: LOGOUT_ACTION
-  }
+    type: LOGOUT_ACTION,
+  };
 };
 
 export const incrementAction = () => {
   return {
-    type: INCREMENT_ACTION
-  }
+    type: INCREMENT_ACTION,
+  };
 };
 
 export const decrementAction = () => {
   return {
-    type: DECREMENT_ACTION
-  }
+    type: DECREMENT_ACTION,
+  };
 };
 
 export const changePostToDisplayAction = postId => {
   return {
     type: CHANGE_POST_TO_DISPLAY_ACTION,
-    postId: postId
-  }
+    postId: postId,
+  };
 };
