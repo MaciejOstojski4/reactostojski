@@ -8,6 +8,7 @@ export const LOGOUT_ACTION = "LOGOUT";
 export const LOGIN_ACTION = "LOGIN";
 export const ADD_POST_ACTION = "ADD_POST";
 export const DELETE_POST_ACTION = "DELETE_POST";
+export const CHANGE_POST_TO_DISPLAY_ACTION = "CHANGE_POST_TO_DISPLAY";
 
 
 export const addPostAction = post => {
@@ -16,7 +17,6 @@ export const addPostAction = post => {
         data: post
     }
 };
-
 
 export const deletePostAction = id => {
     return {
@@ -47,5 +47,12 @@ export const incrementAction = () => {
 export const decrementAction = () => {
     return {
         type: DECREMENT_ACTION
+    }
+};
+
+export const changePostToDisplayAction = postId => {
+    return {
+        type: CHANGE_POST_TO_DISPLAY_ACTION,
+        postId: postId
     }
 };

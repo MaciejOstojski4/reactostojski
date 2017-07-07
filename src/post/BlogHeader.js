@@ -19,7 +19,7 @@ class BlogHeader extends React.Component {
     render() {
         return (
             <div className="navbar navbar-default">
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <div className="navbar-header">
                         <Link to="/" className="navbar-brand">Blog</Link>
                     </div>
@@ -30,9 +30,11 @@ class BlogHeader extends React.Component {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li className="navbar-text">{this.isUserLogged(this.props.userEmail)}</li>
-                        <li className="navbar-text">Post counter: {this.props.postQuantity}</li>
+                        <li className="navbar-text">Post counter:
+                            <span className="badge">{this.props.postQuantity}</span></li>
                         <li><Link to="/login-form">Login <span className="glyphicon glyphicon-log-in" /></Link></li>
-                        <li><Link onClick={() => this.props.dispatch(logoutAction())} to="/" >Logout <span className="glyphicon glyphicon-log-out" /></Link></li>
+                        <li><Link onClick={() => this.props.dispatch(logoutAction())} to="/" >Logout
+                            <span className="glyphicon glyphicon-log-out" /></Link></li>
                     </ul>
                 </div>
             </div>
