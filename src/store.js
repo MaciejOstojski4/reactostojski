@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   sessionReducer: sessionReducer,
 });
 
-const enhancer = compose(persistState("session"));
+const enhancer = compose(persistState("postsReducer"));
 
 const store = createStore(rootReducer, {}, enhancer);
 
