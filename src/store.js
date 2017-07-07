@@ -8,9 +8,9 @@ import {postsReducer} from "./post/reducer/posts";
 import {sessionReducer} from "./user/reducer/session";
 
 const rootReducer = combineReducers({
-    postsReducer: postsReducer,
-    counterReducer: counterReducer,
-    sessionReducer: sessionReducer
+  postsReducer: postsReducer,
+  counterReducer: counterReducer,
+  sessionReducer: sessionReducer
 });
 
 const store = createStore(rootReducer);

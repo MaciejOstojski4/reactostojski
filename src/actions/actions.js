@@ -12,47 +12,47 @@ export const CHANGE_POST_TO_DISPLAY_ACTION = "CHANGE_POST_TO_DISPLAY";
 
 
 export const addPostAction = post => {
-    return {
-        type: ADD_POST_ACTION,
-        data: post
-    }
+  return {
+    type: ADD_POST_ACTION,
+    data: post
+  }
 };
 
 export const deletePostAction = id => {
-    return {
-        type: DELETE_POST_ACTION,
-        data: id
-    }
+  return {
+    type: DELETE_POST_ACTION,
+    data: id
+  }
 };
 
 export const loginAction = email => {
-    return {
-        type: LOGIN_ACTION,
-        data: email
-    }
+  return {
+    type: LOGIN_ACTION,
+    data: email
+  }
 };
 
 export const logoutAction = () => {
-    return {
-        type: LOGOUT_ACTION
-    }
+  return {
+    type: LOGOUT_ACTION
+  }
 };
 
 export const incrementAction = () => {
-    return {
-        type: INCREMENT_ACTION
-    }
+  return {
+    type: INCREMENT_ACTION
+  }
 };
 
 export const decrementAction = () => {
-    return {
-        type: DECREMENT_ACTION
-    }
+  return {
+    type: DECREMENT_ACTION
+  }
 };
 
 export const changePostToDisplayAction = postId => {
-    return {
-        type: CHANGE_POST_TO_DISPLAY_ACTION,
-        postId: postId
-    }
+  return {
+    type: CHANGE_POST_TO_DISPLAY_ACTION,
+    postId: postId
+  }
 };

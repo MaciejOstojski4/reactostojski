@@ -6,20 +6,20 @@ import PostList from "./PostList";
 
 class ParityList extends React.Component {
 
-    render() {
-        let parityList = this.props.posts.map((val, index) => {
-            let newTitle = val.title;
-            if (index%2 === 0) {
-                newTitle += " Parzysty";
-            } else {
-                newTitle += " Nieparzysty";
-            }
-            return {...val, title: newTitle};
-        });
-        return (
-            <PostList {...this.props} posts={parityList} />
-        )
-    }
+  render() {
+    let parityList = this.props.posts.map((val, index) => {
+      let newTitle = val.title;
+      if (index%2 === 0) {
+        newTitle += " Parzysty";
+      } else {
+        newTitle += " Nieparzysty";
+      }
+      return {...val, title: newTitle};
+    });
+    return (
+      <PostList {...this.props} posts={parityList} />
+    )
+  }
 }
 
 export default ParityList;
