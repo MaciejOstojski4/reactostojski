@@ -3,47 +3,50 @@
  */
 import React from "react";
 import { connect } from "react-redux";
+import apiClient from "../lib/api-client";
 
 class PostDetail extends React.Component {
-  isPostChoosen = () => {
-    if (this.props.post === undefined) {
-      return "Nie wybrałeś posta";
-    } else {
-      return (
-        <div>
-          <div className="row jumbotron">
-            <h1>
-              {this.props.post.title}
-            </h1>
-          </div>
-          <div className="row">
-            <h4>
-              Created: {this.props.post.created_at}
-            </h4>
-          </div>
-          <div className="row">
-            {this.props.post.body}
-          </div>
-        </div>
-      );
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      post: {}
     }
-  };
+  }
+
+  componentDidMount() {
+    apiClient.get(POST_URL + this.props.params.id)
+      .then(response => {
+        this.setState({
+          post: response.data
+        })
+      })
+      .catch(error => {
+        console.log("Error occurred while app try to show post details: " + error);
+      })
+  }
 
   render() {
     return (
       <div className="col-md-8 col-md-offset-2 text-center">
-        {this.isPostChoosen()}
+        <div className="row jumbotron">
+          <h1>
+            {this.state.post.title}
+          </h1>
+        </div>
+        <div className="row">
+          <h4>
+            Created: {this.state.post.created_at}
+          </h4>
+        </div>
+        <div className="row">
+          {this.state.post.body}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = currentState => {
-  return {
-    post: currentState.postsReducer.posts.find(
-      val => val.id === currentState.postsReducer.postToDisplayId,
-    ),
-  };
-};
+const POST_URL = "/example/api/v1/posts/";
 
-export default connect(mapStateToProps)(PostDetail);
+export default connect()(PostDetail);

@@ -7,20 +7,15 @@ import React from "react";
 import Button from "../user-interface/button";
 import styled from "styled-components";
 import AlertButton from "../user-interface/AlertButton";
-import { connect } from "react-redux";
-import {
-  changePostToDisplayAction,
-} from "../actions/actions";
-import { withRouter } from "react-router";
 
 class Post extends React.Component {
-  showPostDetails = () => {
-    this.props.dispatch(changePostToDisplayAction(this.props.post.id));
-    this.props.router.push("post-details");
-  };
 
   onPostButtonClicked = () => {
     this.props.onPostButtonClicked(this.props.post.id);
+  };
+
+  onShowPostDetailsClicked = () => {
+    this.props.onShowPostDetailsClicked(this.props.post.id);
   };
 
   render() {
@@ -48,7 +43,7 @@ class Post extends React.Component {
           <Button
             label="Show details"
             class={"btn btn-success"}
-            onClick={this.showPostDetails}
+            onClick={this.onShowPostDetailsClicked}
           />
         </PostField>
         <PostField className="row text-center">
@@ -69,4 +64,4 @@ const StyledPost = styled.div`
   }
 `;
 
-export default connect()(withRouter(Post));
+export default Post;

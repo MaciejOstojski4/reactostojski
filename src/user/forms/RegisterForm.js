@@ -76,7 +76,7 @@ class RegisterForm extends React.Component {
           this.setState({
             errorInfo: "Server error",
           });
-          console.log(error);
+          console.log("Error occurred while application try to process sign-in: " + error);
         });
     } else {
       this.setState({

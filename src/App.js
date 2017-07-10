@@ -28,7 +28,7 @@ class App extends Component {
             <IndexRoute component={Home} />
             <Route path="posts" component={PostPage} />
             <Route path="post-form" component={PostForm} />
-            <Route path="post-details" component={PostDetail} />
+            <Route path="post-details/:id" component={PostDetail} />
           </Route>
           <Route path="login-form" component={LoginForm} />
           <Route path="register-form" component={RegisterForm} />

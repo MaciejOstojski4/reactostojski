@@ -7,6 +7,7 @@ import ParityList from "./lists/ParityList";
 import { connect } from "react-redux";
 import { deleteAction, setPostsListAction } from "../actions/actions";
 import apiClient from "../lib/api-client";
+import { withRouter } from "react-router";
 
 class PostPage extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class PostPage extends React.Component {
         this.props.dispatch(setPostsListAction(postsList));
       })
       .catch(error => {
-        console.log("Error occured while app try to fetch posts: " + error);
+        console.log("Error occurred while app try to fetch posts: " + error);
       });
   };
 
@@ -44,8 +45,12 @@ class PostPage extends React.Component {
       .delete(POST_URL + postId)
       .then(this.fetchPostsList)
       .catch(error => {
-        console.log("Error occured while app try to delete post: " + error);
+        console.log("Error occurred while app try to delete post: " + error);
       });
+  };
+
+  showPostDetails = postId => {
+    this.props.router.push("post-details/" + postId)
   };
 
   render() {
@@ -61,7 +66,7 @@ class PostPage extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-8 col-md-offset-1">
-            <ParityList onDelete={this.deletePost} posts={postsToDisplay} />
+            <ParityList onShowPostDetails={this.showPostDetails} onDelete={this.deletePost} posts={postsToDisplay} />
           </div>
         </div>
       </div>
@@ -79,4 +84,4 @@ const mapStateToProps = currentState => {
 
 const POST_URL = "/example/api/v1/posts/";
 
-export default connect(mapStateToProps)(PostPage);
+export default connect(mapStateToProps)(withRouter(PostPage));

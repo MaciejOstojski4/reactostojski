@@ -55,7 +55,7 @@ class PostForm extends React.Component {
         this.props.router.push("posts");
       })
       .catch(error => {
-        console.log("Error occured while app try to add new post: " + error);
+        console.log("Error occurred while app try to add new post: " + error);
       });
   };
 
