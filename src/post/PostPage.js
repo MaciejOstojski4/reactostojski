@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { deleteAction, setPostsListAction } from "../actions/actions";
 import apiClient from "../lib/api-client";
 import { withRouter } from "react-router";
+import _ from "lodash";
 
 class PostPage extends React.Component {
   constructor(props) {
@@ -54,9 +55,10 @@ class PostPage extends React.Component {
   };
 
   render() {
-    let postsToDisplay = this.props.postsReducer.posts.filter(val =>
+    const postsToDisplay = this.props.postsReducer.posts.filter(val =>
       val.title.toLowerCase().includes(this.state.searchedValue),
     );
+    const orderedPosts = _.orderBy(postsToDisplay, ["title"]);
     return (
       <div className="container">
         <div className="row">
@@ -66,7 +68,7 @@ class PostPage extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-8 col-md-offset-1">
-            <ParityList onShowPostDetails={this.showPostDetails} onDelete={this.deletePost} posts={postsToDisplay} />
+            <ParityList onShowPostDetails={this.showPostDetails} onDelete={this.deletePost} posts={orderedPosts} />
           </div>
         </div>
       </div>
