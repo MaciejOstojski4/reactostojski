@@ -2,8 +2,8 @@
  * Created by react on 07.07.17.
  */
 import React from "react";
-import axios from "axios";
 import { withRouter } from "react-router";
+import apiClient from "../../lib/api-client";
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class RegisterForm extends React.Component {
     if (
       this.state.formObject.password === this.state.formObject.repeatedPassword
     ) {
-      axios
+      apiClient
         .post(REGISTER_URL, this.createObjectToSend())
         .then(response => {
           this.props.router.push("login-form");
@@ -127,6 +127,6 @@ class RegisterForm extends React.Component {
 }
 
 const REGISTER_URL =
-  "https://praktyki-react.herokuapp.com/api/v1/registrations";
+  "/api/v1/registrations";
 
 export default withRouter(RegisterForm);

@@ -4,8 +4,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import axios from "axios";
 import { loginAction } from "../../actions/actions";
+import apiClient from "../../lib/api-client";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
     this.setState({
       errorInfo: "",
     });
-    axios
+    apiClient
       .post(LOGIN_URL, this.createObjectToSend())
       .then(response => {
         const token = response.data.data.auth_token;
@@ -95,6 +95,6 @@ class LoginForm extends React.Component {
   }
 }
 
-const LOGIN_URL = "https://praktyki-react.herokuapp.com/api/v1/sessions";
+const LOGIN_URL = "/api/v1/sessions";
 
 export default connect()(withRouter(LoginForm));

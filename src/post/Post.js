@@ -9,7 +9,6 @@ import styled from "styled-components";
 import AlertButton from "../user-interface/AlertButton";
 import { connect } from "react-redux";
 import {
-  deletePostAction,
   changePostToDisplayAction,
 } from "../actions/actions";
 import { withRouter } from "react-router";
@@ -18,6 +17,10 @@ class Post extends React.Component {
   showPostDetails = () => {
     this.props.dispatch(changePostToDisplayAction(this.props.post.id));
     this.props.router.push("post-details");
+  };
+
+  onPostButtonClicked = () => {
+    this.props.onPostButtonClicked(this.props.post.id);
   };
 
   render() {
@@ -38,8 +41,7 @@ class Post extends React.Component {
           <Button
             label="Delete"
             class={"btn btn-danger"}
-            onClick={() =>
-              this.props.dispatch(deletePostAction(this.props.post.id))}
+            onClick={this.onPostButtonClicked}
           />
         </PostField>
         <PostField className="row text-center">

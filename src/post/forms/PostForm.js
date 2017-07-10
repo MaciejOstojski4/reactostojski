@@ -6,8 +6,7 @@ import React from "react";
 import Button from "../../user-interface/button";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { addPostAction } from "../../actions/actions";
-import axios from "axios";
+import apiClient from "../../lib/api-client";
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -38,15 +37,6 @@ class PostForm extends React.Component {
     }
   };
 
-  prepareHeadersWithAuth = () => {
-    return {
-      headers: {
-        "X-User-Email": this.props.user.userEmail,
-        "X-User-Token": this.props.user.token,
-      },
-    };
-  };
-
   preparePayload = () => {
     return {
       post: {
@@ -59,8 +49,8 @@ class PostForm extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    axios
-      .post(ADD_POST_URL, this.preparePayload(), this.prepareHeadersWithAuth())
+    apiClient
+      .post(ADD_POST_URL, this.preparePayload())
       .then(response => {
         this.props.router.push("posts");
       })
@@ -124,7 +114,7 @@ class PostForm extends React.Component {
 }
 
 const ADD_POST_URL =
-  "https://praktyki-react.herokuapp.com/example/api/v1/posts";
+  "/example/api/v1/posts";
 
 const mapStateToProps = currentState => {
   return {

@@ -13,7 +13,7 @@ class PostList extends React.Component {
           {this.props.posts.map(post => {
             return (
               <li key={post.id} className="list-group-item">
-                <Post post={post} onDelete={this.props.onDelete} />
+                <Post post={post} onPostButtonClicked={this.props.onDelete} />
               </li>
             );
           })}

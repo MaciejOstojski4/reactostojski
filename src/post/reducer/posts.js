@@ -10,8 +10,8 @@ import {
 } from "../../actions/actions";
 
 const initialState = {
-  posts: [],
   postToDisplayId: -1,
+  posts: []
 };
 
 const posts = (currentState = initialState, action) => {

@@ -6,7 +6,7 @@ import SearchPost from "./SearchPost";
 import ParityList from "./lists/ParityList";
 import { connect } from "react-redux";
 import { deleteAction, setPostsListAction } from "../actions/actions";
-import axios from "axios";
+import apiClient from "../lib/api-client";
 
 class PostPage extends React.Component {
   constructor(props) {
@@ -17,18 +17,15 @@ class PostPage extends React.Component {
     };
   }
 
-  prepareHeadersWithAuth = () => {
-    return {
-      headers: {
-        "X-User-Email": this.props.user.userEmail,
-        "X-User-Token": this.props.user.token,
-      },
-    };
+  search = title => {
+    this.setState({
+      searchedValue: title.toLowerCase(),
+    });
   };
 
-  componentDidMount() {
-    axios
-      .get(GET_POSTS_LIST_URL, this.prepareHeadersWithAuth())
+  fetchPostsList = () => {
+    apiClient
+      .get(POST_URL)
       .then(response => {
         const postsList = response.data.posts;
         this.props.dispatch(setPostsListAction(postsList));
@@ -36,12 +33,19 @@ class PostPage extends React.Component {
       .catch(error => {
         console.log("Error occured while app try to fetch posts: " + error);
       });
+  };
+
+  componentDidMount() {
+    this.fetchPostsList();
   }
 
-  search = title => {
-    this.setState({
-      searchedValue: title.toLowerCase(),
-    });
+  deletePost = postId => {
+    apiClient
+      .delete(POST_URL + postId)
+      .then(this.fetchPostsList)
+      .catch(error => {
+        console.log("Error occured while app try to delete post: " + error);
+      });
   };
 
   render() {
@@ -57,7 +61,7 @@ class PostPage extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-8 col-md-offset-1">
-            <ParityList posts={postsToDisplay} />
+            <ParityList onDelete={this.deletePost} posts={postsToDisplay} />
           </div>
         </div>
       </div>
@@ -73,7 +77,6 @@ const mapStateToProps = currentState => {
   };
 };
 
-const GET_POSTS_LIST_URL =
-  "https://praktyki-react.herokuapp.com/example/api/v1/posts";
+const POST_URL = "/example/api/v1/posts/";
 
 export default connect(mapStateToProps)(PostPage);
