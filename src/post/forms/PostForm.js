@@ -7,6 +7,7 @@ import Button from "../../user-interface/button";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { addPostAction } from "../../actions/actions";
+import axios from "axios";
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -37,10 +38,35 @@ class PostForm extends React.Component {
     }
   };
 
+  prepareHeadersWithAuth = () => {
+    return {
+      headers: {
+        "X-User-Email": this.props.user.userEmail,
+        "X-User-Token": this.props.user.token,
+      },
+    };
+  };
+
+  preparePayload = () => {
+    return {
+      post: {
+        title: this.state.post.title,
+        body: this.state.post.content,
+        user_id: this.props.user.userId,
+      },
+    };
+  };
+
   onSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(addPostAction(this.state.post));
-    this.props.router.push("posts");
+    axios
+      .post(ADD_POST_URL, this.preparePayload(), this.prepareHeadersWithAuth())
+      .then(response => {
+        this.props.router.push("posts");
+      })
+      .catch(error => {
+        console.log("Error occured while app try to add new post: " + error);
+      });
   };
 
   render() {
@@ -97,4 +123,13 @@ class PostForm extends React.Component {
   }
 }
 
-export default connect()(withRouter(PostForm));
+const ADD_POST_URL =
+  "https://praktyki-react.herokuapp.com/example/api/v1/posts";
+
+const mapStateToProps = currentState => {
+  return {
+    user: currentState.sessionReducer.user,
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(PostForm));

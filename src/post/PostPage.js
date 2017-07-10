@@ -5,6 +5,8 @@ import React from "react";
 import SearchPost from "./SearchPost";
 import ParityList from "./lists/ParityList";
 import { connect } from "react-redux";
+import { deleteAction, setPostsListAction } from "../actions/actions";
+import axios from "axios";
 
 class PostPage extends React.Component {
   constructor(props) {
@@ -13,6 +15,27 @@ class PostPage extends React.Component {
     this.state = {
       searchedValue: "",
     };
+  }
+
+  prepareHeadersWithAuth = () => {
+    return {
+      headers: {
+        "X-User-Email": this.props.user.userEmail,
+        "X-User-Token": this.props.user.token,
+      },
+    };
+  };
+
+  componentDidMount() {
+    axios
+      .get(GET_POSTS_LIST_URL, this.prepareHeadersWithAuth())
+      .then(response => {
+        const postsList = response.data.posts;
+        this.props.dispatch(setPostsListAction(postsList));
+      })
+      .catch(error => {
+        console.log("Error occured while app try to fetch posts: " + error);
+      });
   }
 
   search = title => {
@@ -46,7 +69,11 @@ const mapStateToProps = currentState => {
   return {
     postsReducer: currentState.postsReducer,
     counter: currentState.counterReducer,
+    user: currentState.sessionReducer.user,
   };
 };
+
+const GET_POSTS_LIST_URL =
+  "https://praktyki-react.herokuapp.com/example/api/v1/posts";
 
 export default connect(mapStateToProps)(PostPage);

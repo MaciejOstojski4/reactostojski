@@ -12,12 +12,8 @@ class PostList extends React.Component {
         <ul className="list-group">
           {this.props.posts.map(post => {
             return (
-              <li className="list-group-item">
-                <Post
-                  key={post.id}
-                  post={post}
-                  onDelete={this.props.onDelete}
-                />
+              <li key={post.id} className="list-group-item">
+                <Post post={post} onDelete={this.props.onDelete} />
               </li>
             );
           })}

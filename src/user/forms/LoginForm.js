@@ -50,7 +50,8 @@ class LoginForm extends React.Component {
       .post(LOGIN_URL, this.createObjectToSend())
       .then(response => {
         const token = response.data.data.auth_token;
-        this.props.dispatch(loginAction(this.state.formObject.email, token));
+        const userId = response.data.data.user_id
+        this.props.dispatch(loginAction(this.state.formObject.email, token, userId));
         this.props.router.push("posts");
       })
       .catch(error => {

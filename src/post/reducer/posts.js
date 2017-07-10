@@ -6,20 +6,11 @@ import {
   ADD_POST_ACTION,
   DELETE_POST_ACTION,
   CHANGE_POST_TO_DISPLAY_ACTION,
+  SET_POSTS_LIST_ACTION,
 } from "../../actions/actions";
 
 const initialState = {
-  posts: [
-    {
-      id: 1,
-      title: "Pierwszy tytuł",
-      content: "Pierwszy content",
-      author: "ja",
-    },
-    { id: 2, title: "Drugi tytuł", content: "Drugi content", author: "ja" },
-    { id: 3, title: "Trzeci tytuł", content: "Trzeci content", author: "ja" },
-    { id: 4, title: "Czwarty tytuł", content: "Czwarty content", author: "ja" },
-  ],
+  posts: [],
   postToDisplayId: -1,
 };
 
@@ -34,6 +25,11 @@ const posts = (currentState = initialState, action) => {
       };
     case CHANGE_POST_TO_DISPLAY_ACTION:
       return { ...currentState, postToDisplayId: action.postId };
+    case SET_POSTS_LIST_ACTION:
+      return {
+        posts: action.data,
+        postToDisplayId: -1,
+      };
     default:
       return currentState;
   }

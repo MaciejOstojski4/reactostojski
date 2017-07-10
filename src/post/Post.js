@@ -29,10 +29,10 @@ class Post extends React.Component {
           </h2>
         </PostField>
         <PostField className="row text-center">
-          Author: {this.props.post.author}
+          Created: {this.props.post.created_at}
         </PostField>
         <PostField className="row text-center">
-          {this.props.post.content}
+          {this.props.post.body}
         </PostField>
         <PostField className="row text-center">
           <Button

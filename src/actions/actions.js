@@ -6,9 +6,17 @@ export const INCREMENT_ACTION = "INCREMENT";
 export const DECREMENT_ACTION = "DECREMENT";
 export const LOGOUT_ACTION = "LOGOUT";
 export const LOGIN_ACTION = "LOGIN";
+export const SET_POSTS_LIST_ACTION = "SET_POSTS_LIST";
 export const ADD_POST_ACTION = "ADD_POST";
 export const DELETE_POST_ACTION = "DELETE_POST";
 export const CHANGE_POST_TO_DISPLAY_ACTION = "CHANGE_POST_TO_DISPLAY";
+
+export const setPostsListAction = postsList => {
+  return {
+    type: SET_POSTS_LIST_ACTION,
+    data: postsList,
+  };
+};
 
 export const addPostAction = post => {
   return {
@@ -24,12 +32,13 @@ export const deletePostAction = id => {
   };
 };
 
-export const loginAction = (email, token) => {
+export const loginAction = (email, token, userId) => {
   return {
     type: LOGIN_ACTION,
     data: {
       email: email,
       token: token,
+      userId: userId,
     },
   };
 };

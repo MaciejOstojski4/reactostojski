@@ -40,7 +40,7 @@ class BlogHeader extends React.Component {
               {this.isUserLogged(this.props.userEmail)}
             </li>
             <li className="navbar-text">
-              Post counter:
+              Post counter{" "}
               <span className="badge">{this.props.postQuantity}</span>
             </li>
             <li>

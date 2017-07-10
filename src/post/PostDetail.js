@@ -18,11 +18,11 @@ class PostDetail extends React.Component {
           </div>
           <div className="row">
             <h4>
-              Autor: {this.props.post.author}
+              Created: {this.props.post.created_at}
             </h4>
           </div>
           <div className="row">
-            {this.props.post.content}
+            {this.props.post.body}
           </div>
         </div>
       );

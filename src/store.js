@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
   sessionReducer: sessionReducer,
 });
 
-const enhancer = compose(persistState("postsReducer"));
+//const enhancer = compose(persistState("sessionReducer"));
 
-const store = createStore(rootReducer, {}, enhancer);
+const store = createStore(rootReducer)//, {}, enhancer);
 
 export default store;
